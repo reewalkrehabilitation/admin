@@ -1,5 +1,4 @@
 import {
-  FileText,
   ScanLine,
 } from "lucide-react";
 

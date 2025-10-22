@@ -11,17 +11,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Zap, TrendingUp } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 export default function DashboardPage() {
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
-  const quickStats = [
-    { label: "Active Scans", value: "127", change: "+12%", trend: "up" },
-    { label: "Completed Today", value: "23", change: "+5%", trend: "up" },
-    { label: "Processing", value: "8", change: "-2%", trend: "down" },
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50/30 to-blue-50/50">
@@ -62,8 +55,6 @@ export default function DashboardPage() {
                     <DialogTrigger asChild>
                       <Card 
                         className="group relative overflow-hidden cursor-pointer border-0 bg-white/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105"
-                        onMouseEnter={() => setHoveredCard(box.id)}
-                        onMouseLeave={() => setHoveredCard(null)}
                       >
                         {/* Animated Background */}
                         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -116,7 +107,7 @@ export default function DashboardPage() {
                         </DialogDescription>
                       </DialogHeader>
                       <div className="grid gap-4 mt-8">
-                        {box.dialogContent.map((item, index) => (
+                        {box.dialogContent.map((item) => (
                           <Link href={item.link} key={item.link}>
                             <Card className={`p-6 hover:bg-purple-50/50 cursor-pointer transition-all duration-300 border-l-4 ${item.borderColor} hover:shadow-lg group relative overflow-hidden`}>
                               {/* Subtle background animation */}
@@ -146,8 +137,7 @@ export default function DashboardPage() {
                   <Link href={box.link || '#'} key={box.id}>
                     <Card 
                       className="group relative overflow-hidden cursor-pointer border-0 bg-white/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105"
-                      onMouseEnter={() => setHoveredCard(box.id)}
-                      onMouseLeave={() => setHoveredCard(null)}
+  
                     >
                       {/* Animated Background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
